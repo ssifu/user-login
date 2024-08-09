@@ -35,6 +35,10 @@ const users = [
   },
 ];
 
+app.get("/", (req, res) => {
+  res.send("Welcome to my API!");
+});
+
 app.post("/api/login", (req, res) => {
   const { email, password } = req.body;
   const user = users.find((u) => u.email === email);
