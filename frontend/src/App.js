@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const App = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
@@ -11,16 +11,13 @@ const App = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch(
-        "https://user-login-backend.vercel.app/api/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const response = await fetch("http://localhost:5000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
 
       const data = await response.json();
 
@@ -34,7 +31,7 @@ const App = () => {
       setError("An unexpected error occurs");
     }
 
-    setEmail("");
+    setUsername("");
     setPassword("");
   };
 
@@ -47,20 +44,20 @@ const App = () => {
           </h5>
           <div>
             <label
-              htmlFor="email"
+              htmlFor="username"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Your email
             </label>
             <input
-              type="email"
-              name="email"
-              id="email"
+              type="text"
+              name="username"
+              id="username"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
               placeholder="name@company.com"
-              value={email}
+              value={username}
               onChange={(event) => {
-                setEmail(event.target.value);
+                setUsername(event.target.value);
               }}
               required
             />
