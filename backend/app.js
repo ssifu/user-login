@@ -66,7 +66,7 @@ app.post("/api/login", (req, res) => {
           res.json({
             message: "Login Successful",
             user: {
-              username: userPrincipalName,
+              username: username,
               fullName: fullName,
               email: userPrincipalName,
             },
